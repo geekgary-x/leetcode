@@ -22,5 +22,7 @@ struct TreeNode
     {}
 
     static TreeNode* stringToTreeNode(std::string input);
+
+    static std::string treeNodeToString(TreeNode*);
 };
 

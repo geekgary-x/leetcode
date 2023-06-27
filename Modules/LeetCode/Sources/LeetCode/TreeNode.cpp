@@ -44,3 +44,32 @@ TreeNode* TreeNode::stringToTreeNode(std::string input)
     }
     return root;
 }
+
+#include <sstream>
+void traversalTreeNode(TreeNode* treenode, std::stringstream& sstring)
+{
+    if (treenode == nullptr) {
+        sstring << ",null";
+        return;
+    }
+    if (treenode->left == nullptr && treenode->right == nullptr) {
+        sstring << "," << treenode->val;
+        return;
+    }
+    traversalTreeNode(treenode->left, sstring);
+    sstring << "," << treenode->val;
+    traversalTreeNode(treenode->right, sstring);
+}
+
+std::string TreeNode::treeNodeToString(TreeNode* treenode)
+{
+    std::stringstream sstring;
+    sstring << "[";
+    sstring << treenode->val;
+    traversalTreeNode(treenode->left, sstring);
+    traversalTreeNode(treenode->right, sstring);
+    sstring << "]";
+    std::string rnt;
+    sstring >> rnt;
+    return rnt;
+}
